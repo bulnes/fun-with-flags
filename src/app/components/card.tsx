@@ -1,14 +1,18 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 
 interface CardProps {
-  country: string;
+  index: number;
+  flag: string;
+  name: string;
   capital: string;
   region: string;
   population: number;
 }
 
 export default function Card({
-  country,
+  index,
+  flag,
+  name,
   capital,
   region,
   population,
@@ -16,15 +20,17 @@ export default function Card({
   return (
     <div className="h-full bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="aspect-video w-full">
-        <img
-          src="https://placehold.co/600x400"
-          alt=""
-          loading="lazy"
+        <Image
+          src={flag || "https://placehold.co/600x400"}
+          alt={`Flag of ${name}`}
+          width={600}
+          height={400}
           className="w-full h-full object-cover"
+          priority={index < 4}
         />
       </div>
       <div className="p-6 text-sm text-gray-600">
-        <h2 className="text-xl font-semibold mb-4">{country}</h2>
+        <h2 className="text-xl font-semibold mb-4">{name}</h2>
 
         <div className="space-y-2">
           <div className="flex items-center gap-1">
