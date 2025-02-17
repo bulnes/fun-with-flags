@@ -10,7 +10,8 @@ const ApiClient = (baseURL: string) => ({
       const data = await response.json();
       return [data, null];
     } catch (error) {
-      return [null, error];
+      const { message } = error as Error;
+      return [null, message || "An error occurred"];
     }
   }
 });
