@@ -21,7 +21,7 @@ export default function Card({
     <div className="h-full bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="aspect-video w-full">
         <Image
-          src={flag || "https://placehold.co/600x400"}
+          src={flag || "/flag-placehold.svg"}
           alt={`Flag of ${name}`}
           width={600}
           height={400}
