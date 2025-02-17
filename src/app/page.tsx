@@ -1,8 +1,8 @@
 "use client";
 
+import { Card, Footer, Grid, Header } from "@/components";
 import { countriesApi } from "@/services/api";
 import { useEffect, useState } from "react";
-import { Card, Footer, Grid, Header } from "./components";
 
 type Country = {
   cca3: string;
