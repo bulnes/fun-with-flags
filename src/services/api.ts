@@ -16,10 +16,10 @@ const ApiClient = (baseURL: string) => ({
   }
 });
 
-const api = ApiClient("https://restcountries.com/v3.1");
+const countriesApiClient = ApiClient("https://restcountries.com/v3.1");
 
 const countriesApi = {
-  getAll: () => api.get("/all?filters=cca3,flags,name,capital,region,population")
+  getAll: () => countriesApiClient.get("/all?filters=cca3,flags,name,capital,region,population")
 };
 
 export { countriesApi };
