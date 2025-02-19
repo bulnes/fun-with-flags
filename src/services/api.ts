@@ -19,7 +19,8 @@ const ApiClient = (baseURL: string) => ({
 const countriesApiClient = ApiClient("https://restcountries.com/v3.1");
 
 const countriesApi = {
-  getAll: () => countriesApiClient.get("/all?filters=cca3,flags,name,capital,region,population")
+  getAll: () => countriesApiClient.get("/all?filters=cca3,flags,name,capital,region,population"),
+  getCountry: (id: string) => countriesApiClient.get(`/alpha/${id}?fields=cca3,flags,name,capital,region,population,languages,tld,borders`)
 };
 
 export { countriesApi };
