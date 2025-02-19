@@ -1,13 +1,53 @@
+"use client";
+
+import { Country as CountryType } from "@/@types/country";
+import { countriesApi } from "@/services/api";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-interface CountryProps {
-  params: Promise<{ id: string }>;
-}
-
-export default async function Country({ params }: CountryProps) {
-  const { id } = await params;
+export default function Country() {
   const name = "Brazil";
+
+  const params = useParams<{ id: string }>();
+
+  const [id, setId] = useState<string>();
+  const [countries, setCountries] = useState<CountryType>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (params?.id) {
+      setId(params.id);
+    }
+  }, [params]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      const [response, error] = await countriesApi.getCountry(id);
+      setLoading(false);
+
+      if (error) {
+        setError(error);
+        return;
+      }
+
+      setCountries(response);
+    };
+
+    if (id) {
+      fetchCountries();
+    }
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <>
@@ -30,11 +70,12 @@ export default async function Country({ params }: CountryProps) {
             width={600}
             height={400}
             className="w-full h-full"
+            priority
           />
         </div>
 
         <div className="p-6 text-sm text-gray-600">
-          <h2 className="text-xl font-semibold mb-4">Brazil {id}</h2>
+          <h2 className="text-xl font-semibold mb-4">Brazil ({id})</h2>
 
           <div className="space-y-2">
             <div className="flex items-center gap-1">
