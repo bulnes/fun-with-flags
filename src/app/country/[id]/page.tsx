@@ -8,23 +8,21 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Country() {
-  const name = "Brazil";
-
   const params = useParams<{ id: string }>();
 
   const [id, setId] = useState<string>();
-  const [countries, setCountries] = useState<CountryType>([]);
+  const [country, setCountry] = useState<CountryType>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (params?.id) {
+    if (params?.id && params.id !== id) {
       setId(params.id);
     }
-  }, [params]);
+  }, [params, id]);
 
   useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchCountry = async () => {
       const [response, error] = await countriesApi.getCountry(id);
       setLoading(false);
 
@@ -33,11 +31,11 @@ export default function Country() {
         return;
       }
 
-      setCountries(response);
+      setCountry(response);
     };
 
     if (id) {
-      fetchCountries();
+      fetchCountry();
     }
   }, [id]);
 
@@ -65,52 +63,54 @@ export default function Country() {
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
         <div className="w-full max-w-[400px]">
           <Image
-            src={"/flag-placehold.svg"}
-            alt={`Flag of ${name}`}
+            src={country?.flags?.svg || "/flag-placehold.svg"}
+            alt={`Flag of ${country?.name?.common}`}
             width={600}
             height={400}
-            className="w-full h-full"
+            className="w-full h-full aspect-video rounded"
             priority
           />
         </div>
 
         <div className="p-6 text-sm text-gray-600">
-          <h2 className="text-xl font-semibold mb-4">Brazil ({id})</h2>
+          <h2 className="text-xl font-semibold mb-4">
+            {country?.name.common} ({country?.cca3})
+          </h2>
 
           <div className="space-y-2">
             <div className="flex items-center gap-1">
               <span>Capital:</span>
-              <span>Brasília</span>
+              <span>{country?.capital}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Region:</span>
-              <span>South America</span>
+              <span>{country?.region}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Population:</span>
-              <span>215000000</span>
+              <span>{country?.population}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Languages:</span>
-              <span>Portuguese</span>
+              <span>{Object.values(country?.languages || {})}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Currencies:</span>
-              <span>BRL</span>
+              <span>{Object.keys(country?.currencies || {})}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Top Level Domain:</span>
-              <span>.br</span>
+              <span>{country?.tld}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Border:</span>
-              <span>ARG, BOL, URY, VEN</span>
+              <span>{country?.borders?.join(", ")}</span>
             </div>
           </div>
         </div>
