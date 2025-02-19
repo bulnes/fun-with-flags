@@ -23,7 +23,7 @@ export default function Country() {
 
   useEffect(() => {
     const fetchCountry = async () => {
-      const [response, error] = await countriesApi.getCountry(id);
+      const [response, error] = await countriesApi.getCountry(id as string);
       setLoading(false);
 
       if (error) {
