@@ -1,22 +1,10 @@
 "use client";
 
+import { Country } from "@/@types/country";
 import { Card, Grid } from "@/components";
 import { countriesApi } from "@/services/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-type Country = {
-  cca3: string;
-  flags: {
-    svg: string;
-  };
-  name: {
-    common: string;
-  };
-  capital: string[];
-  region: string;
-  population: number;
-};
 
 export default function Home() {
   const [countries, setCountries] = useState<Country[]>([]);
