@@ -9,4 +9,8 @@ export type Country = {
   capital: string[];
   region: string;
   population: number;
+  tld?: string[];
+  languages?: Record<string, string>;
+  borders?: string[];
+  currencies?: Record<string, string>;
 };
