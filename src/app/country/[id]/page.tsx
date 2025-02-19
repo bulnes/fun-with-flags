@@ -60,14 +60,14 @@ export default function Country() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
-        <div className="w-full max-w-[400px]">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-center">
+        <div className="w-full max-w-[400px] aspect-video">
           <Image
             src={country?.flags?.svg || "/flag-placehold.svg"}
             alt={`Flag of ${country?.name?.common}`}
             width={600}
             height={400}
-            className="w-full h-full aspect-video rounded"
+            className="w-full h-full rounded"
             priority
           />
         </div>
