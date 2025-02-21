@@ -67,7 +67,7 @@ export default function Country() {
             alt={`Flag of ${country?.name?.common}`}
             width={600}
             height={400}
-            className="w-full h-full rounded"
+            className="w-full h-full rounded object-cover"
             priority
           />
         </div>
