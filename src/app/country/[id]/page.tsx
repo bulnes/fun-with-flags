@@ -69,7 +69,20 @@ export default function Country() {
     .map(({ name, symbol }) => `${name} (${symbol})`)
     .join(", ");
   const [topLevelDomain] = tld || [];
-  const bordersNames = borders?.join(", ");
+
+  const bordersNames =
+    !borders || borders.length === 0
+      ? "None"
+      : borders.map((border) => (
+          <Link key={border} href={`/country/${border}`}>
+            <button
+              type="button"
+              className="bg-gray-200 hover:bg-gray-300 text-xs mb-[6px] mr-[6px] py-[1.5px] px-[6px] rounded"
+            >
+              {border}
+            </button>
+          </Link>
+        ));
 
   return (
     <>
@@ -126,7 +139,7 @@ export default function Country() {
               <span>Top Level Domain:</span> {topLevelDomain}
             </div>
 
-            <div>
+            <div className="max-w-80">
               <span>Border:</span> {bordersNames}
             </div>
           </div>
