@@ -1,6 +1,6 @@
 "use client";
 
-import { Country as CountryType } from "@/@types/country";
+import { DetailedCountry } from "@/@types/detailed-country";
 import { countriesApi } from "@/services/api";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ export default function Country() {
   const params = useParams<{ id: string }>();
 
   const [id, setId] = useState<string>();
-  const [country, setCountry] = useState<CountryType>();
+  const [country, setCountry] = useState<DetailedCountry>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,6 +47,30 @@ export default function Country() {
     return <div>{error}</div>;
   }
 
+  const {
+    cca3,
+    flags,
+    name,
+    capital,
+    region,
+    population,
+    languages,
+    currencies,
+    tld,
+    borders,
+  } = country || {};
+
+  const { svg: flag } = flags || { svg: "" };
+  const { common: countryName } = name || { common: "" };
+  const [capitalName] = capital || [""];
+
+  const languagesNames = Object.values(languages || {}).join(", ");
+  const currenciesNames = Object.values(currencies || {})
+    .map(({ name, symbol }) => `${name} (${symbol})`)
+    .join(", ");
+  const [topLevelDomain] = tld || [];
+  const bordersNames = borders?.join(", ");
+
   return (
     <>
       <div className="mb-8">
@@ -61,56 +85,56 @@ export default function Country() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-center">
-        <div className="w-full max-w-[400px] aspect-video">
+        <div className="flex items-center max-w-[400px]">
           <Image
-            src={country?.flags?.svg || "/flag-placehold.svg"}
-            alt={`Flag of ${country?.name?.common}`}
+            src={flag || "/flag-placehold.svg"}
+            alt={`Flag of ${countryName}`}
             width={600}
             height={400}
-            className="w-full h-full rounded object-cover"
+            className="rounded-lg max-h-80 object-cover"
             priority
           />
         </div>
 
         <div className="p-6 text-sm text-gray-600">
           <h2 className="text-xl font-semibold mb-4">
-            {country?.name.common} ({country?.cca3})
+            {countryName} ({cca3})
           </h2>
 
           <div className="space-y-2">
             <div className="flex items-center gap-1">
               <span>Capital:</span>
-              <span>{country?.capital}</span>
+              <span>{capitalName}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Region:</span>
-              <span>{country?.region}</span>
+              <span>{region}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Population:</span>
-              <span>{country?.population}</span>
+              <span>{population}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Languages:</span>
-              <span>{Object.values(country?.languages || {})}</span>
+              <span>{languagesNames}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Currencies:</span>
-              <span>{Object.keys(country?.currencies || {})}</span>
+              <span>{currenciesNames}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Top Level Domain:</span>
-              <span>{country?.tld}</span>
+              <span>{topLevelDomain}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span>Border:</span>
-              <span>{country?.borders?.join(", ")}</span>
+              <span>{bordersNames}</span>
             </div>
           </div>
         </div>
