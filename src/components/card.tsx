@@ -33,19 +33,16 @@ export default function Card({
         <h2 className="text-xl font-semibold mb-4">{name}</h2>
 
         <div className="space-y-2">
-          <div className="flex items-center gap-1">
-            <span>Capital:</span>
-            <span>{capital}</span>
+          <div>
+            <span>Capital:</span> {capital}
           </div>
 
-          <div className="flex items-center gap-1">
-            <span>Region:</span>
-            <span>{region}</span>
+          <div>
+            <span>Region:</span> {region}
           </div>
 
-          <div className="flex items-center gap-1">
-            <span>Population:</span>
-            <span>{population}</span>
+          <div>
+            <span>Population:</span> {population}
           </div>
         </div>
       </div>

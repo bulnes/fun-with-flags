@@ -102,39 +102,32 @@ export default function Country() {
           </h2>
 
           <div className="space-y-2">
-            <div className="flex items-center gap-1">
-              <span>Capital:</span>
-              <span>{capitalName}</span>
+            <div>
+              <span>Capital:</span> {capitalName}
             </div>
 
-            <div className="flex items-center gap-1">
-              <span>Region:</span>
-              <span>{region}</span>
+            <div>
+              <span>Region:</span> {region}
             </div>
 
-            <div className="flex items-center gap-1">
-              <span>Population:</span>
-              <span>{population}</span>
+            <div>
+              <span>Population:</span> {population}
             </div>
 
-            <div className="flex items-center gap-1">
-              <span>Languages:</span>
-              <span>{languagesNames}</span>
+            <div>
+              <span>Languages:</span> {languagesNames}
             </div>
 
-            <div className="flex items-center gap-1">
-              <span>Currencies:</span>
-              <span>{currenciesNames}</span>
+            <div>
+              <span>Currencies:</span> {currenciesNames}
             </div>
 
-            <div className="flex items-center gap-1">
-              <span>Top Level Domain:</span>
-              <span>{topLevelDomain}</span>
+            <div>
+              <span>Top Level Domain:</span> {topLevelDomain}
             </div>
 
-            <div className="flex items-center gap-1">
-              <span>Border:</span>
-              <span>{bordersNames}</span>
+            <div>
+              <span>Border:</span> {bordersNames}
             </div>
           </div>
         </div>
