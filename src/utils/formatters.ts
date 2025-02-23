@@ -7,6 +7,8 @@ export const formatNumber = (value: number) => {
     unitIndex++;
   }
 
-  return `${value.toFixed(1)}${units[unitIndex]}`.replace(".0", "");
-};
+  const fixedValue = value.toFixed(1).replace(".0", "");
+  const selectedUnit = units[unitIndex];
 
+  return `${fixedValue}${selectedUnit}`;
+};
