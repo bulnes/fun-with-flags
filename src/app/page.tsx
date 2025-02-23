@@ -7,9 +7,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const allRegionsLabel = "All regions";
+
   const [countries, setCountries] = useState<Country[]>([]);
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState("All regions");
+  const [selected, setSelected] = useState(allRegionsLabel);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,14 +48,14 @@ export default function Home() {
   );
 
   const filteredCountries = sortedCountries.filter((country) => {
-    const isSearchedName = country.name.common
+    const nameMatches = country.name.common
       .toLowerCase()
       .includes(search.toLowerCase());
 
-    return (
-      isSearchedName &&
-      (selected === "All regions" || country.region === selected)
-    );
+    const regionMatches =
+      selected === allRegionsLabel || country.region === selected;
+
+    return nameMatches && regionMatches;
   });
 
   return (
