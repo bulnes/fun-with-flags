@@ -20,6 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://restcountries.com" />
+        <link rel="preconnect" href="https://flagcdn.com" />
+      </head>
       <body className={`${notoSans.className} antialiased`}>
         <Header />
         <main className="flex-1">{children}</main>
