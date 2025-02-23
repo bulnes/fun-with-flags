@@ -9,8 +9,6 @@ export default function Select({
   selected,
   setSelected,
 }: SelectProps) {
-  const selectOptions = ["All regions", ...options];
-
   return (
     <>
       <div className="relative mb-2">
@@ -19,7 +17,7 @@ export default function Select({
           onChange={(e) => setSelected(e.target.value)}
           className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none pr-11"
         >
-          {selectOptions.map((option) => (
+          {options.map((option) => (
             <option key={option}>{option}</option>
           ))}
         </select>
