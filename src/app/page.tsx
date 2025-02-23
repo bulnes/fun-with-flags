@@ -74,6 +74,7 @@ export default function Home() {
 
         <div className="col-span-1">
           <Select
+            label="Filter by region"
             options={regionOptions}
             selected={selected}
             setSelected={setSelected}
