@@ -1,7 +1,9 @@
 const ApiClient = (baseURL: string) => ({
   async get(endpoint: string) {
     try {
-      const response = await fetch(`${baseURL}${endpoint}`);
+      const response = await fetch(`${baseURL}${endpoint}`, {
+        cache: 'force-cache',
+      });
 
       if (!response.ok) {
         return [null, response.statusText];
