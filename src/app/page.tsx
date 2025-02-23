@@ -1,13 +1,14 @@
 "use client";
 
 import { Country } from "@/@types/country";
-import { Card, Grid } from "@/components";
+import { Card, Grid, Search } from "@/components";
 import { countriesApi } from "@/services/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [countries, setCountries] = useState<Country[]>([]);
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,27 +40,41 @@ export default function Home() {
     a.name.common.localeCompare(b.name.common, "en-US")
   );
 
-  return (
-    <Grid>
-      {sortedCountries.map((country, index) => {
-        const { cca3, flags, name, capital, region, population } = country;
-        const { svg: flag } = flags || { svg: "" };
-        const { common: countryName } = name || { common: "" };
-        const [capitalName] = capital || [""];
+  const filteredCountries = sortedCountries.filter((country) =>
+    country.name.common.toLowerCase().includes(search.toLowerCase())
+  );
 
-        return (
-          <Link key={cca3} href={`/country/${cca3}`}>
-            <Card
-              index={index}
-              flag={flag}
-              name={countryName}
-              capital={capitalName}
-              region={region}
-              population={population}
-            />
-          </Link>
-        );
-      })}
-    </Grid>
+  return (
+    <>
+      <div className="mb-8">
+        <Search
+          count={filteredCountries.length}
+          search={search}
+          setSearch={setSearch}
+        />
+      </div>
+
+      <Grid>
+        {filteredCountries.map((country, index) => {
+          const { cca3, flags, name, capital, region, population } = country;
+          const { svg: flag } = flags || { svg: "" };
+          const { common: countryName } = name || { common: "" };
+          const [capitalName] = capital || [""];
+
+          return (
+            <Link key={cca3} href={`/country/${cca3}`}>
+              <Card
+                index={index}
+                flag={flag}
+                name={countryName}
+                capital={capitalName}
+                region={region}
+                population={population}
+              />
+            </Link>
+          );
+        })}
+      </Grid>
+    </>
   );
 }
