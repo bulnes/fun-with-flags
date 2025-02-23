@@ -35,9 +35,13 @@ export default function Home() {
     return <div>{error}</div>;
   }
 
+  const sortedCountries = countries.sort((a, b) =>
+    a.name.common.localeCompare(b.name.common, "en-US")
+  );
+
   return (
     <Grid>
-      {countries.map((country, index) => {
+      {sortedCountries.map((country, index) => {
         const { cca3, flags, name, capital, region, population } = country;
         const { svg: flag } = flags || { svg: "" };
         const { common: countryName } = name || { common: "" };
