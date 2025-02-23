@@ -1,3 +1,4 @@
+import { formatNumber } from "@/utils/formatters";
 import Image from "next/image";
 
 interface CardProps {
@@ -42,7 +43,7 @@ export default function Card({
           </div>
 
           <div>
-            <span>Population:</span> {population}
+            <span>Population:</span> {formatNumber(population)}
           </div>
         </div>
       </div>

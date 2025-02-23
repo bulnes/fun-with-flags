@@ -2,6 +2,7 @@
 
 import { DetailedCountry } from "@/@types/detailed-country";
 import { countriesApi } from "@/services/api";
+import { formatNumber } from "@/utils/formatters";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -65,6 +66,7 @@ export default function Country() {
     common: "",
   };
   const [capitalName] = capital || [""];
+  const countryPopulation = population || 0;
 
   const languagesNames = Object.values(languages || {}).join(", ");
   const currenciesNames = Object.values(currencies || {})
@@ -130,7 +132,7 @@ export default function Country() {
             </div>
 
             <div>
-              <span>Population:</span> {population}
+              <span>Population:</span> {formatNumber(countryPopulation)}
             </div>
 
             <div>
