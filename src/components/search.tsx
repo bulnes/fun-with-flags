@@ -8,7 +8,7 @@ interface SearchProps {
 
 export default function Search({ count, search, setSearch }: SearchProps) {
   return (
-    <div>
+    <>
       <div className="relative mb-2">
         <input
           type="text"
@@ -25,6 +25,6 @@ export default function Search({ count, search, setSearch }: SearchProps) {
       <span className="text-gray-600 text-sm pl-4">
         Showing {count} {count === 1 ? "country" : "countries"}
       </span>
-    </div>
+    </>
   );
 }
