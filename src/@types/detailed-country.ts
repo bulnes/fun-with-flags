@@ -5,6 +5,7 @@ export type DetailedCountry = {
   };
   name: {
     common: string;
+    official: string;
   };
   capital: string[];
   region: string;

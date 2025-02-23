@@ -61,7 +61,9 @@ export default function Country() {
   } = country || {};
 
   const { svg: flag } = flags || { svg: "" };
-  const { common: countryName } = name || { common: "" };
+  const { common: countryName, official: officialName } = name || {
+    common: "",
+  };
   const [capitalName] = capital || [""];
 
   const languagesNames = Object.values(languages || {}).join(", ");
@@ -115,6 +117,10 @@ export default function Country() {
           </h2>
 
           <div className="space-y-2">
+            <div>
+              <span>Official Name:</span> {officialName}
+            </div>
+
             <div>
               <span>Capital:</span> {capitalName}
             </div>
