@@ -40,7 +40,7 @@ export default function Home() {
   }
 
   const regionOptions = [
-    "All regions",
+    allRegionsLabel,
     ...new Set(countries.map((country) => country.region).sort()),
   ];
 
