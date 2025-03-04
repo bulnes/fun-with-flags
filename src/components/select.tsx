@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 interface SelectProps {
@@ -22,36 +22,6 @@ export default function Select({
     setIsOpen(false);
   };
 
-  const renderButtonIcon = () => {
-    if (isOpen) {
-      return <ChevronUpIcon className="size-4" />;
-    }
-
-    return <ChevronDownIcon className="size-4" />;
-  };
-
-  const renderListWithOptions = () => {
-    if (!isOpen) {
-      return null;
-    }
-
-    return (
-      <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-sm">
-        {options.map((option) => (
-          <li key={option}>
-            <button
-              type="button"
-              className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:outline-none"
-              onClick={() => handleListOptionClick(option)}
-            >
-              {option}
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
   return (
     <div className="relative">
       <button
@@ -60,10 +30,28 @@ export default function Select({
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selected}</span>
-        <span>{renderButtonIcon()}</span>
+        <span>
+          <ChevronDownIcon
+            className={`size-4 ${isOpen ? "transform rotate-180" : ""}`}
+          />
+        </span>
       </button>
 
-      {renderListWithOptions()}
+      {isOpen && (
+        <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-sm">
+          {options.map((option) => (
+            <li key={option}>
+              <button
+                type="button"
+                className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:outline-none"
+                onClick={() => handleListOptionClick(option)}
+              >
+                {option}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
