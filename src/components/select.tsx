@@ -30,15 +30,13 @@ export default function Select({
         onClick={() => setIsOpen((isCurrentOpen) => !isCurrentOpen)}
       >
         <span>{selected}</span>
-        <span>
-          <ChevronDownIcon
-            className={`size-4 ${isOpen ? "transform rotate-180" : ""}`}
-          />
-        </span>
+        <ChevronDownIcon
+          className={`size-4 ${isOpen ? "transform rotate-180" : ""}`}
+        />
       </button>
 
       {isOpen && (
-        <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-sm">
+        <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
           {options.map((option) => (
             <li key={option}>
               <button
