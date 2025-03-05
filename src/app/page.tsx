@@ -1,7 +1,7 @@
 "use client";
 
 import { Country } from "@/@types/country";
-import { Card, Grid, Loading, Search, Select } from "@/components";
+import { Card, Error, Grid, Loading, Search, Select } from "@/components";
 import { countriesApi } from "@/services/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -36,15 +36,15 @@ export default function Home() {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <Error text={error} />;
   }
 
   const regionOptions = [
     allRegionsLabel,
-    ...new Set(countries.map((country) => country.region).sort()),
+    ...new Set((countries || []).map((country) => country.region).sort()),
   ];
 
-  const sortedCountries = countries.sort((a, b) =>
+  const sortedCountries = (countries || []).sort((a, b) =>
     a.name.common.localeCompare(b.name.common, "en-US")
   );
 

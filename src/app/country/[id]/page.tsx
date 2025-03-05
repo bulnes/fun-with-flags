@@ -1,7 +1,7 @@
 "use client";
 
 import { DetailedCountry } from "@/@types/detailed-country";
-import { Loading } from "@/components";
+import { Error, Loading } from "@/components";
 import { countriesApi } from "@/services/api";
 import { formatNumber } from "@/utils/formatters";
 import Image from "next/image";
@@ -46,7 +46,7 @@ export default function Country() {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <Error text={error} />;
   }
 
   const {
