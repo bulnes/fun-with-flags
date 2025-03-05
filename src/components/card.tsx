@@ -19,7 +19,7 @@ export default function Card({
   population,
 }: CardProps) {
   return (
-    <div className="h-full bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="h-full bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300 ease-in-out">
       <div className="aspect-video w-full">
         <Image
           src={flag || "/flag-placehold.svg"}
