@@ -1,3 +1,5 @@
+const apiURL = process.env.NEXT_PUBLIC_API_URL!;
+
 const ApiClient = (baseURL: string) => ({
   async get(endpoint: string) {
     try {
@@ -18,7 +20,7 @@ const ApiClient = (baseURL: string) => ({
   }
 });
 
-const countriesApiClient = ApiClient("https://restcountries.com/v3.1");
+const countriesApiClient = ApiClient(apiURL);
 
 const countriesApi = {
   getAll: () => countriesApiClient.get("/all?filters=cca3,flags,name,capital,region,population"),
