@@ -24,7 +24,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://restcountries.com" />
         <link rel="preconnect" href="https://flagcdn.com" />
       </head>
-      <body className={`${notoSans.className} antialiased`}>
+      <body
+        className={`${notoSans.className} antialiased p-8 md:px-16 lg:px-24`}
+      >
         <Header />
         <main className="flex flex-col flex-1">{children}</main>
         <Footer />
