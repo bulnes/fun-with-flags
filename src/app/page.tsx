@@ -1,7 +1,7 @@
 "use client";
 
 import { Country } from "@/@types/country";
-import { Card, Grid, Search, Select } from "@/components";
+import { Card, Grid, Loading, Search, Select } from "@/components";
 import { countriesApi } from "@/services/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading text="Discovering countries..." />;
   }
 
   if (error) {

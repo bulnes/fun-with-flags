@@ -1,6 +1,7 @@
 "use client";
 
 import { DetailedCountry } from "@/@types/detailed-country";
+import { Loading } from "@/components";
 import { countriesApi } from "@/services/api";
 import { formatNumber } from "@/utils/formatters";
 import Image from "next/image";
@@ -41,7 +42,7 @@ export default function Country() {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading text="Visiting country..." />;
   }
 
   if (error) {

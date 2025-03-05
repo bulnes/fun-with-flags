@@ -26,7 +26,7 @@ export default function RootLayout({
       </head>
       <body className={`${notoSans.className} antialiased`}>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex flex-col flex-1">{children}</main>
         <Footer />
       </body>
     </html>
