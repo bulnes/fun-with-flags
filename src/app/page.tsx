@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <>
       <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <div className="col-span-1">
+        <div className="col-span-1 order-3 md:order-1">
           <Search
             count={filteredCountries.length}
             search={search}
@@ -70,9 +70,9 @@ export default function Home() {
           />
         </div>
 
-        <div className="hidden xl:block xl:col-span-1" />
+        <div className="hidden xl:block xl:col-span-1 md:order-2" />
 
-        <div className="col-span-1">
+        <div className="col-span-1 order-1 md:order-3">
           <Select
             label="Filter by region"
             options={regionOptions}

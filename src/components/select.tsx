@@ -104,7 +104,7 @@ export default function Select({
           id={listId}
           tabIndex={0} // The list can be focused
           aria-activedescendant={`option-${focusedIndex}`} // The currently focused option
-          className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden focus:ring-2 focus:ring-blue-500 focus:outline-none z-10"
           onKeyDown={handleListKeyDown}
         >
           {options.map((option, index) => (
